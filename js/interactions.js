@@ -151,7 +151,7 @@ function initApprovalFlow() {
         <div class="sim-idle">
           <p class="sim-idle-label">Trigger the daily brief to see the flow</p>
           <button class="sim-btn sim-btn--primary" id="sim-run-brief" aria-label="Run daily brief simulation">
-            ▶ Run Brief
+            Run Brief
           </button>
         </div>`;
       document.getElementById("sim-run-brief").addEventListener("click", () => {
@@ -227,7 +227,7 @@ function initApprovalFlow() {
               Try approving 1 again (idempotency check)
             </button>
             <button class="sim-btn sim-btn--ghost" id="sim-reset">
-              ↺ Reset
+              Reset
             </button>
           </div>
         </div>`);

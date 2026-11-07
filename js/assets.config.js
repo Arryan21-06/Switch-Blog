@@ -1,84 +1,123 @@
 /**
- * assets.config.js — Real asset presence map and swap logic
+ * assets.config.js — Real asset presence map and dynamic swap logic
  * Daybreak: Standup Zero for Switch
  *
  * HOW IT WORKS:
- *   1. Add a key to REAL_ASSETS when a real file has been captured.
- *   2. Set the value to true.
- *   3. The page will automatically swap the illustration for the real file on load.
- *
- * REAL FILES LIVE IN: assets/real/
- * ILLUSTRATION PANELS LIVE IN: assets/panels/
+ *   1. Drop real files into assets/real/ (e.g. brief.png, cockpit.png, friday-rule.gif).
+ *   2. Either set REAL_ASSETS[key] = true, OR let the dynamic probe detect the file on load.
+ *   3. The page automatically swaps the illustration for the real asset and removes
+ *      the "Illustration of the intended flow" caption.
  */
 
+"use strict";
+
 const REAL_ASSETS = {
-  /** Daily brief screenshot — shows Scribe output with evidence links */
   brief: false,
-
-  /** Sentinel proposals screenshot — numbered list with approve/snooze UI */
   proposals: false,
-
-  /** Approval-to-GitHub screenshot — Clerk posting comment after approval */
   "approval-github": false,
-
-  /** Friday-rule GIF — rule changed in room, next run obeys it */
   "friday-rule": false,
-
-  /** Daybreak Cockpit screenshot — read-only web dashboard */
   cockpit: false,
-
-  /** Full demo video */
   demo: false,
 };
 
-/**
- * Map: asset key → { real: path, illustration: path, illustrationAlt }
- * illustration paths point to the sliced collage panels.
- */
 const ASSET_PATHS = {
   brief: {
     real: "assets/real/brief.png",
+    realCaption: "Verified capture: Daily brief with evidence links",
     illustration: "assets/panels/panel-05-chat-800.webp",
-    illustrationAlt:
-      "Illustration of the intended flow: Switch #daybreak channel showing the Daybreak daily brief with proposed actions",
+    illustrationAlt: "Illustration of the intended flow: Switch channel showing the daily brief with proposed actions",
   },
   proposals: {
     real: "assets/real/proposals.png",
+    realCaption: "Verified capture: Sentinel proposal list",
     illustration: "assets/panels/panel-05-chat-800.webp",
-    illustrationAlt:
-      "Illustration of the intended flow: Sentinel proposal list with approve and dismiss buttons",
+    illustrationAlt: "Illustration of the intended flow: Sentinel proposals list",
   },
   "approval-github": {
     real: "assets/real/approval-github.png",
+    realCaption: "Verified capture: GitHub comment posted after approval",
     illustration: "assets/panels/panel-06-github-800.webp",
-    illustrationAlt:
-      "Illustration of the intended flow: GitHub comment posted by daybreak-bot after human approval",
+    illustrationAlt: "Illustration of the intended flow: GitHub comment posted after approval",
   },
   "friday-rule": {
     real: "assets/real/friday-rule.gif",
+    realCaption: "Verified capture: Friday rule change and next-run compliance",
     illustration: "assets/panels/panel-06-github-800.webp",
-    illustrationAlt:
-      "Illustration of the intended flow: The Flow checklist showing Draft → Recommend → Approve → Act sequence",
+    illustrationAlt: "Illustration of the intended flow: Flow checklist and GitHub comment",
   },
   cockpit: {
     real: "assets/real/cockpit.png",
+    realCaption: "Verified capture: Daybreak Cockpit read-only dashboard",
     illustration: "assets/panels/panel-04-flow-800.webp",
-    illustrationAlt:
-      "Illustration of the intended flow: GitHub–Daybreak–Switch integration diagram",
+    illustrationAlt: "Daybreak Cockpit dashboard visual",
   },
   demo: {
     real: "assets/real/demo.mp4",
+    realCaption: "Verified demo recording",
     illustration: null,
     illustrationAlt: null,
   },
 };
 
 /**
- * swapAssets()
- * Called on DOMContentLoaded.
- * For each [data-asset-key] element:
- *   - If REAL_ASSETS[key] is true: show real img, hide illustration img
- *   - If false: show illustration, update label text
+ * Activate real asset on a given slot DOM element
+ */
+function activateRealAsset(slot, config) {
+  const realEl = slot.querySelector(".asset-slot__real");
+  const illustEl = slot.querySelector(".asset-slot__illustration");
+  const labelEl = slot.querySelector(".asset-slot__label");
+  const frame = slot.querySelector(".tilt-frame");
+
+  if (realEl) {
+    realEl.removeAttribute("hidden");
+    realEl.style.display = "block";
+    realEl.src = config.real;
+  }
+  if (illustEl) {
+    illustEl.setAttribute("hidden", "");
+    illustEl.style.display = "none";
+  }
+  if (labelEl) {
+    labelEl.textContent = "";
+  }
+  if (frame) {
+    frame.removeAttribute("data-illustration");
+    const fig = frame.querySelector("figcaption");
+    if (fig && config.realCaption) {
+      fig.textContent = config.realCaption;
+    }
+  }
+}
+
+/**
+ * Activate illustration on a given slot DOM element
+ */
+function activateIllustration(slot, config) {
+  const realEl = slot.querySelector(".asset-slot__real");
+  const illustEl = slot.querySelector(".asset-slot__illustration");
+  const labelEl = slot.querySelector(".asset-slot__label");
+  const frame = slot.querySelector(".tilt-frame");
+
+  if (illustEl) {
+    illustEl.removeAttribute("hidden");
+    illustEl.style.display = "block";
+    if (config.illustrationAlt) illustEl.alt = config.illustrationAlt;
+  }
+  if (realEl) {
+    realEl.setAttribute("hidden", "");
+    realEl.style.display = "none";
+  }
+  if (labelEl) {
+    labelEl.textContent = "Illustration of the intended flow";
+    labelEl.style.fontStyle = "italic";
+  }
+  if (frame) {
+    frame.setAttribute("data-illustration", "");
+  }
+}
+
+/**
+ * Check and swap assets
  */
 function swapAssets() {
   document.querySelectorAll("[data-asset-key]").forEach((slot) => {
@@ -86,31 +125,41 @@ function swapAssets() {
     const config = ASSET_PATHS[key];
     if (!config) return;
 
-    const realEl = slot.querySelector(".asset-slot__real");
-    const illustEl = slot.querySelector(".asset-slot__illustration");
-    const labelEl = slot.querySelector(".asset-slot__label");
-
     if (REAL_ASSETS[key]) {
-      // Real asset exists — show it
-      if (realEl) {
-        realEl.removeAttribute("hidden");
-        realEl.src = config.real;
-      }
-      if (illustEl) illustEl.setAttribute("hidden", "");
-      if (labelEl) labelEl.textContent = "";
-    } else {
-      // No real asset — show illustration with caption
-      if (illustEl) {
-        illustEl.removeAttribute("hidden");
-        if (config.illustrationAlt) illustEl.alt = config.illustrationAlt;
-      }
-      if (realEl) realEl.setAttribute("hidden", "");
-      if (labelEl) {
-        labelEl.textContent = "Illustration of the intended flow";
-        labelEl.style.fontStyle = "italic";
-      }
+      activateRealAsset(slot, config);
+      return;
+    }
+
+    // Default to illustration
+    activateIllustration(slot, config);
+
+    // Dynamic test: attempt to probe if real image exists and is a valid image (naturalWidth > 1)
+    if (config.real && !config.real.endsWith(".mp4")) {
+      const probe = new Image();
+      probe.onload = () => {
+        // If file exists and is a genuine image (> 1px dimension)
+        if (probe.naturalWidth > 1) {
+          activateRealAsset(slot, config);
+        }
+      };
+      probe.onerror = () => {
+        // Keeps illustration active
+      };
+      probe.src = config.real + "?t=" + Date.now();
     }
   });
+
+  // Check demo video slot
+  const demoSlot = document.querySelector(".demo-slot");
+  if (demoSlot) {
+    const video = demoSlot.querySelector("video");
+    const placeholder = demoSlot.querySelector(".demo-slot__placeholder");
+    if (REAL_ASSETS.demo && video && placeholder) {
+      video.removeAttribute("hidden");
+      placeholder.style.display = "none";
+      demoSlot.classList.remove("dev-placeholder");
+    }
+  }
 }
 
 document.addEventListener("DOMContentLoaded", swapAssets);

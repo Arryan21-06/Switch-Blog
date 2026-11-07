@@ -6,6 +6,19 @@
 
 "use strict";
 
+/**
+ * Dev toggle for unpopulated placeholders (origin story, challenges, demo slot, dev note).
+ * Set to false before public release to cleanly hide unfilled cards from readers.
+ */
+window.SHOW_PLACEHOLDERS = true;
+
+function initPlaceholders() {
+  document.documentElement.classList.toggle(
+    "show-placeholders",
+    Boolean(window.SHOW_PLACEHOLDERS)
+  );
+}
+
 /* ══════════════════════════════════════════════════════════════════════════
    UTILS
    ══════════════════════════════════════════════════════════════════════ */
@@ -296,6 +309,7 @@ function initSmoothHashScroll() {
    BOOT
    ══════════════════════════════════════════════════════════════════════ */
 document.addEventListener("DOMContentLoaded", () => {
+  initPlaceholders();
   initScrollProgressBar();
   initStickyNav();
   initMobileNav();
@@ -306,7 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSmoothHashScroll();
 
   console.log(
-    "%c🌅 Daybreak — Standup Zero for Switch",
+    "%cDaybreak — Standup Zero for Switch",
     "color: #f2a65a; font-weight: bold; font-size: 14px;"
   );
 });

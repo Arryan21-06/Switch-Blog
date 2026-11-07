@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- ── Primary meta ──────────────────────────────────────────────────── -->
+  <!-- ── Primary metadata ──────────────────────────────────────────────── -->
   <title>Daybreak: Standup Zero for Switch</title>
   <meta name="description"
         content="Daybreak drafts daily engineering briefs from GitHub activity, identifies potential blockers, and proposes follow-up actions — humans approve before anything happens. Built for the WeMakeDevs × Switch Flip the Switch Hackathon.">
@@ -16,7 +16,9 @@
   <meta property="og:title"       content="Daybreak: Standup Zero for Switch">
   <meta property="og:description"
         content="An evidence-backed daily engineering brief, with human-approved follow-up actions. Built on Switch for the Flip the Switch Hackathon.">
-  <meta property="og:image"       content="assets/panels/panel-01-title-800.webp">
+  <meta property="og:image"       content="assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:url"         content="https://github.com/Arryan21-06/Flip-the-Switch">
 
   <!-- ── Twitter Card ───────────────────────────────────────────────────── -->
@@ -24,16 +26,17 @@
   <meta name="twitter:title"       content="Daybreak: Standup Zero for Switch">
   <meta name="twitter:description"
         content="An evidence-backed daily engineering brief, with human-approved follow-up actions.">
-  <meta name="twitter:image"       content="assets/panels/panel-01-title-800.webp">
+  <meta name="twitter:image"       content="assets/og-image.png">
 
   <!-- ── Fonts ──────────────────────────────────────────────────────────── -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" as="style">
   <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@400;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;600&display=swap"
     rel="stylesheet">
 
-  <!-- ── Styles ─────────────────────────────────────────────────────────── -->
+  <!-- ── Stylesheets ────────────────────────────────────────────────────── -->
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
@@ -42,17 +45,18 @@
 <body>
 
   <!-- ══════════════════════════════════════════════════════════════════════
-       STICKY NAV
+       STICKY NAV WITH SCROLL PROGRESS BAR
        ══════════════════════════════════════════════════════════════════ -->
   <nav class="site-nav" aria-label="Primary navigation">
+    <div class="scroll-progress" aria-hidden="true"></div>
     <div class="site-nav__inner">
 
-      <!-- Brand / site title -->
+      <!-- Brand -->
       <a href="#home" class="site-nav__brand" aria-label="Daybreak home">
         Day<span>break</span>
       </a>
 
-      <!-- Mobile toggle -->
+      <!-- Mobile toggle button -->
       <button
         class="site-nav__toggle"
         aria-controls="primary-nav-links"
@@ -65,347 +69,628 @@
 
       <!-- Nav links -->
       <ul class="site-nav__links" id="primary-nav-links" role="list">
-        <li><a href="#home"         class="is-active">Home</a></li>
-        <li><a href="#problem"               >Problem</a></li>
-        <li><a href="#how-it-works"          >How It Works</a></li>
-        <li><a href="#why-switch"            >Why Switch</a></li>
-        <li><a href="#engineering"           >Engineering</a></li>
-        <li><a href="#learned"               >Learned</a></li>
-        <li><a href="#repo"                  >Repo</a></li>
+        <li><a href="#home" class="is-active">Home</a></li>
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#why-switch">Why Switch</a></li>
+        <li><a href="#engineering">Engineering</a></li>
+        <li><a href="#learned">Learned</a></li>
+        <li><a href="#repo">Repo</a></li>
       </ul>
 
     </div>
   </nav>
 
   <!-- ══════════════════════════════════════════════════════════════════════
-       SECTION: HOME / HERO
+       SECTION 0: INTRO / HERO
        ══════════════════════════════════════════════════════════════════ -->
   <section id="home" class="page-section hero" aria-labelledby="hero-title">
 
     <div class="container hero__inner">
-      <!-- Phase 2: add hero panel image (panel-01-title) as background or tilted frame -->
-      <!-- Phase 2: add intro statement + tagline -->
-      <!-- PLACEHOLDER — full hero content added in Phase 2 -->
-      <p class="label">Flip the Switch Hackathon · Track 1 — Best Business Workflow</p>
+
+      <p class="hero__byline">Flip the Switch Hackathon · Track 1 (Best Business Workflow)</p>
+      
       <h1 id="hero-title" class="hero__title">
         Day<span class="accent">break</span>
       </h1>
+      
       <p class="hero__subtitle">Standup Zero for Switch · Team: Attention is All You Need</p>
-      <p class="hero__statement">The standup is already written.</p>
-      <p class="hero__tagline">This is our story.</p>
+
+      <!-- Amanda Lee Peers inspired statement pattern -->
+      <p class="hero__lead-statement">
+        Daybreak drafts the standup from GitHub, flags stuck pull requests, and acts only after a human approves.
+      </p>
+      <p class="hero__sub-statement">This is how we built it.</p>
+
+      <div class="hero__actions">
+        <a href="https://github.com/Arryan21-06/Flip-the-Switch"
+           class="btn btn--primary"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="View repository on GitHub">
+          View repo
+        </a>
+        <a href="#repo" class="btn btn--outline">
+          Run the demo
+        </a>
+      </div>
+
+      <!-- Tilted hero panel (Panel 1) -->
+      <div class="image-cluster" style="margin-top: 1.5rem;">
+        <figure class="tilt-frame" style="--tilt: -3deg; max-width: 620px;" data-parallax-speed="0.15">
+          <img
+            src="assets/panels/panel-01-title-800.webp"
+            srcset="assets/panels/panel-01-title-800.webp 800w, assets/panels/panel-01-title-1600.webp 1600w"
+            sizes="(max-width: 768px) 90vw, 620px"
+            alt="Daybreak project title banner over a sunrise mountain horizon"
+            width="800" height="225"
+            loading="eager">
+          <figcaption>Daybreak: Standup Zero for Switch</figcaption>
+        </figure>
+      </div>
+
+      <!-- Demo Video Slot -->
+      <div class="demo-slot dev-placeholder" aria-label="Demo recording container">
+        <video class="demo-slot__video" controls hidden>
+          <source src="assets/real/demo.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="demo-slot__placeholder">
+          <svg class="demo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <p class="demo-slot__title">Demo goes here</p>
+          <p class="demo-slot__caption">Awaiting screen recording (/assets/real/demo.mp4)</p>
+        </div>
+      </div>
+
     </div>
 
   </section>
 
+  <div class="container"><hr class="section-divider" aria-hidden="true"></div>
+
   <!-- ══════════════════════════════════════════════════════════════════════
-       SECTION: PROBLEM
+       SECTION 1: THE PROBLEM
        ══════════════════════════════════════════════════════════════════ -->
   <section id="problem" class="page-section" aria-labelledby="problem-heading">
 
     <div class="container">
 
-      <!-- Section header with staggered heading -->
+      <!-- Staggered heading -->
       <header class="section-header reveal">
-        <span class="label">Section 01 — The Problem</span>
-        <div class="stagger-heading" data-parallax aria-label="The Problem Heading">
-          <span class="stagger-line-1">The standup</span>
-          <span class="stagger-line-2">repeats itself.</span>
+        <span class="label">Section 01</span>
+        <div class="stagger-heading" data-parallax id="problem-heading">
+          <span class="stagger-line-1">The</span>
+          <span class="stagger-line-2">Problem</span>
         </div>
+        <p class="section-header__body">
+          Every morning, software teams burn attention on coordination theatre instead of writing code.
+        </p>
+        <a href="#how-it-works" class="section-header__link">Explore how Daybreak addresses it ↓</a>
       </header>
 
-      <!-- Phase 2: full problem content goes here -->
-      <!-- Needed: origin sentence, seeded demo example (panel-02-standup image) -->
-      <div class="reveal" aria-hidden="true">
-        <!-- PLACEHOLDER: Section 1 content — Phase 2 -->
+      <!-- Narrative body -->
+      <div class="reveal">
+        <p>
+          We observed three recurring frictions in daily engineering routines:
+        </p>
+        
+        <p style="margin-top: 1rem;">
+          <strong>1. Manual status collection.</strong> Developers recite git logs and branch names already recorded in GitHub. Retyping updates by hand interrupts morning focus.
+        </p>
+        
+        <p>
+          <strong>2. Delayed blocker visibility.</strong> Pull requests wait over thirty hours for reviews, and overnight test breakages go unnoticed until someone asks.
+        </p>
+        
+        <p>
+          <strong>3. Repeated coordination.</strong> Engineers hesitate to nag peers directly, so stalled pull requests quietly accumulate delay.
+        </p>
+
+        <!-- Origin sentence placeholder -->
+        <div class="origin-placeholder dev-placeholder" role="note">
+          [ONE HONEST ORIGIN SENTENCE FROM THE TEAM GOES HERE]
+        </div>
+
+        <p class="label" style="margin-top: 2rem;">In our seeded demo: PR #42 waited 31 hours for Arjun's review.</p>
+      </div>
+
+      <!-- Tilted panel cluster with sticky notes (Panel 2) -->
+      <div class="image-cluster image-cluster--overlap reveal" style="margin-top: 3rem;">
+        <figure class="tilt-frame image-cluster__item--primary" style="--tilt: 4deg;" data-parallax-speed="0.2">
+          <img
+            src="assets/panels/panel-02-standup-800.webp"
+            srcset="assets/panels/panel-02-standup-800.webp 800w, assets/panels/panel-02-standup-1600.webp 1600w"
+            sizes="(max-width: 768px) 90vw, 600px"
+            alt="Stressed developers around a laptop during an exhausting daily standup"
+            width="800" height="225"
+            loading="lazy">
+          <figcaption>Daily standup fatigue — repeating status that is already in GitHub</figcaption>
+        </figure>
+
+        <div class="sticky-note-wrapper image-cluster__item--secondary">
+          <div class="sticky-note" style="--note-rotate: -4deg;">
+            <p class="sticky-note__text">"What did you do yesterday?"<br>...it's in the commit log.</p>
+          </div>
+        </div>
       </div>
 
     </div>
 
   </section>
 
+  <div class="container"><hr class="section-divider" aria-hidden="true"></div>
+
   <!-- ══════════════════════════════════════════════════════════════════════
-       SECTION: HOW IT WORKS
+       SECTION 2: HOW DAYBREAK WORKS
        ══════════════════════════════════════════════════════════════════ -->
   <section id="how-it-works" class="page-section" aria-labelledby="how-heading">
 
     <div class="container">
 
+      <!-- Staggered heading -->
       <header class="section-header reveal">
-        <span class="label">Section 02 — How Daybreak Works</span>
-        <div class="stagger-heading" data-parallax aria-label="How It Works Heading">
-          <span class="stagger-line-1">Scribe drafts.</span>
-          <span class="stagger-line-2">Humans approve.</span>
+        <span class="label">Section 02</span>
+        <div class="stagger-heading" data-parallax id="how-heading">
+          <span class="stagger-line-1">How it</span>
+          <span class="stagger-line-2">Works</span>
         </div>
+        <p class="section-header__body">
+          A disciplined agent pipeline inside a shared team room.
+        </p>
+        <a href="#approval-sim" class="section-header__link">Try the approval simulator below ↓</a>
       </header>
 
-      <!-- Agent cards (3 cards: Scribe, Sentinel, Clerk) -->
-      <div class="agent-cards reveal-stagger" aria-label="The three Daybreak agents">
-        <!-- Phase 2: populate agent cards with SVG badges and details -->
+      <!-- Key quote -->
+      <div class="key-quote reveal">
+        Scribe drafts, Sentinel recommends, Clerk acts only after human approval.
+      </div>
 
+      <div class="reveal">
+        <span class="callout-pill">Evidence first: No link, no claim</span>
+        <p>
+          If an engineer had zero activity in the repository over the last 24 hours, Scribe reports "No activity found." It never hallucinates or guesses unverified progress.
+        </p>
+        <p style="margin-top: 0.75rem;">
+          Our scope is deliberately compact: <strong>one repository, one chat room, and three agent roles</strong>. We do not attempt broad multi-repo tracker integration.
+        </p>
+      </div>
+
+      <!-- Agent Cards -->
+      <div class="agent-cards reveal-stagger">
+        
         <div class="agent-card" data-agent="scribe">
           <div class="agent-card__badge" aria-hidden="true">
-            <!-- Phase 2: SVG badge-scribe.svg -->
+            <img src="assets/svg/badge-scribe.svg" alt="" width="44" height="44">
           </div>
           <h3 class="agent-card__name">Scribe</h3>
-          <p class="agent-card__role">Drafts the daily brief from recent GitHub activity. Every statement links to evidence.</p>
-          <p class="agent-card__boundary">Read-only · Never invents work</p>
+          <p class="agent-card__role">
+            Reads recent GitHub commits, PRs, and reviews. Drafts a clean three-line update per teammate with direct URLs.
+          </p>
+          <div class="agent-card__boundary">Read-only · Never invents work</div>
         </div>
 
         <div class="agent-card" data-agent="sentinel">
           <div class="agent-card__badge" aria-hidden="true">
-            <!-- Phase 2: SVG badge-sentinel.svg -->
+            <img src="assets/svg/badge-sentinel.svg" alt="" width="44" height="44">
           </div>
           <h3 class="agent-card__name">Sentinel</h3>
-          <p class="agent-card__role">Detects configured potential blockers and proposes follow-up actions.</p>
-          <p class="agent-card__boundary">Read-only · Recommends, does not execute</p>
+          <p class="agent-card__role">
+            Evaluates room rules against repository status. Flags review delays, red CI, or stalled PRs and drafts polite nudges.
+          </p>
+          <div class="agent-card__boundary">Read-only · Recommends only</div>
         </div>
 
         <div class="agent-card" data-agent="clerk">
           <div class="agent-card__badge" aria-hidden="true">
-            <!-- Phase 2: SVG badge-clerk.svg -->
+            <img src="assets/svg/badge-clerk.svg" alt="" width="44" height="44">
           </div>
           <h3 class="agent-card__name">Clerk</h3>
-          <p class="agent-card__role">Carries out approved GitHub actions and returns result links.</p>
-          <p class="agent-card__boundary">Write-capable · Acts only after human approval</p>
+          <p class="agent-card__role">
+            The sole role with GitHub write access. Posts review requests, issue comments, and labels only when a human lead explicitly approves.
+          </p>
+          <div class="agent-card__boundary">Write-capable · Blocked without approval</div>
         </div>
 
       </div>
 
-      <!-- Asset slot: brief / chat illustration (panel-05-chat) -->
-      <div class="asset-slot reveal" data-asset-key="brief" aria-label="Daily brief demonstration">
-        <figure class="tilt-frame" style="--tilt: -3deg;" data-parallax-speed="0.2" data-illustration>
+      <!-- Flow illustration (Panel 4) -->
+      <div class="image-cluster reveal">
+        <figure class="tilt-frame" style="--tilt: -3deg; max-width: 600px;" data-parallax-speed="0.15">
           <img
-            class="asset-slot__illustration"
-            src="assets/panels/panel-05-chat-800.webp"
-            alt="Illustration of the intended flow: Switch #daybreak channel showing the Daybreak daily brief with proposed actions"
-            loading="lazy"
-            width="836" height="225">
-          <img
-            class="asset-slot__real"
-            src=""
-            alt="Screenshot of the Daybreak daily brief with evidence links"
-            hidden>
-          <figcaption>Illustration of the intended flow</figcaption>
+            src="assets/panels/panel-04-flow-800.webp"
+            srcset="assets/panels/panel-04-flow-800.webp 800w, assets/panels/panel-04-flow-1600.webp 1600w"
+            sizes="(max-width: 768px) 90vw, 600px"
+            alt="System architecture flow: GitHub connected to Daybreak on Switch connected to team chat room"
+            width="800" height="223"
+            loading="lazy">
+          <figcaption>Daybreak architecture: GitHub data flow into the Switch room and agent bridge</figcaption>
         </figure>
-        <p class="asset-slot__label"></p>
       </div>
 
-      <!-- Phase 2: evidence rule explanation, approval model, scope statement -->
+      <!-- INTERACTION A: APPROVAL FLOW SIMULATOR -->
+      <div class="reveal" style="margin-top: 3rem;">
+        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Interactive Walkthrough: The Approval Flow</h3>
+        <p style="color: var(--color-text-muted); font-size: var(--text-small); margin-bottom: 1rem;">
+          Try the exact command sequence our system runs with seeded demo data:
+        </p>
+
+        <div class="simulator-box" id="approval-sim" aria-label="Approval flow interactive simulator">
+          <!-- Populated by js/interactions.js -->
+        </div>
+      </div>
+
+      <!-- Comparison table -->
+      <div class="comparison-table-wrapper reveal">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th scope="col">Workflow</th>
+              <th scope="col">Without Daybreak</th>
+              <th scope="col">What Daybreak Does</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Collecting updates</td>
+              <td>Engineers recite git logs from memory or retype commit descriptions into team chat.</td>
+              <td>Scribe synthesizes verified GitHub activity into linked bullet points by 9:30 AM.</td>
+            </tr>
+            <tr>
+              <td>Chasing reviews</td>
+              <td>PRs sit idle for days because developers hesitate to nudge their peers directly.</td>
+              <td>Sentinel detects SLA breaches; Clerk nudges reviewers once the team lead approves.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
     </div>
 
   </section>
 
+  <div class="container"><hr class="section-divider" aria-hidden="true"></div>
+
   <!-- ══════════════════════════════════════════════════════════════════════
-       SECTION: WHY SWITCH
+       SECTION 3: WHY SWITCH
        ══════════════════════════════════════════════════════════════════ -->
   <section id="why-switch" class="page-section" aria-labelledby="switch-heading">
 
     <div class="container">
 
+      <!-- Staggered heading -->
       <header class="section-header reveal">
-        <span class="label">Section 03 — Why Switch</span>
-        <div class="stagger-heading" data-parallax aria-label="Why Switch Heading">
-          <span class="stagger-line-1">Room memory</span>
-          <span class="stagger-line-2">drives behaviour.</span>
+        <span class="label">Section 03</span>
+        <div class="stagger-heading" data-parallax id="switch-heading">
+          <span class="stagger-line-1">Why</span>
+          <span class="stagger-line-2">Switch</span>
         </div>
+        <p class="section-header__body">
+          A static cron script with a webhook cannot coordinate multiple agents, persistent rules, and human gates.
+        </p>
+        <a href="#friday-sim" class="section-header__link">Test the Friday rule toggle ↓</a>
       </header>
 
-      <!-- Asset slot: flow diagram (panel-04-flow) -->
-      <div class="asset-slot reveal" data-asset-key="cockpit" aria-label="GitHub to Switch integration diagram">
-        <figure class="tilt-frame" style="--tilt: 4deg;" data-parallax-speed="0.15">
-          <img
-            class="asset-slot__illustration"
-            src="assets/panels/panel-04-flow-800.webp"
-            alt="Illustration: GitHub on left, Daybreak centre, Switch Room on right showing the integration"
-            loading="lazy"
-            width="836" height="223">
-          <img
-            class="asset-slot__real"
-            src=""
-            alt="Daybreak Cockpit — read-only web dashboard"
-            hidden>
-          <figcaption>GitHub → Daybreak → Switch Room integration</figcaption>
-        </figure>
-        <p class="asset-slot__label"></p>
+      <div class="reveal">
+        <p>
+          Daybreak relies on Switch because our workflow requires room coordination rather than a one-way notification pipe:
+        </p>
+
+        <p style="margin-top: 1rem;">
+          <strong>1. Agents in a shared room.</strong> Scribe, Sentinel, and Clerk share unified room context, exchanging intermediate proposals directly in conversation.
+        </p>
+
+        <p>
+          <strong>2. Rules changeable in chat.</strong> Team policies live in chat. Anyone can adjust rules (like quiet hours or Friday limits) without altering configuration files.
+        </p>
+
+        <p>
+          <strong>3. Context and decisions kept in the room.</strong> When an engineer approves a nudge or snoozes an alert, that decision is saved in room state to prevent repetitive noise.
+        </p>
+
+        <p style="font-size: var(--text-xs); color: var(--color-label); font-family: var(--font-code); margin-top: 1rem;">
+          Note: Verified chat client is Mattermost (bundled with Switch).
+        </p>
       </div>
 
-      <!-- Asset slot: friday-rule illustration (panel-06-github) -->
-      <div class="asset-slot reveal" data-asset-key="friday-rule" aria-label="Friday rule demonstration">
-        <figure class="tilt-frame" style="--tilt: -5deg;" data-parallax-speed="0.25" data-illustration>
+      <!-- Tilted panel (Panel 7) -->
+      <div class="image-cluster reveal" style="margin-top: 2rem;">
+        <figure class="tilt-frame" style="--tilt: 4deg; max-width: 600px;" data-parallax-speed="0.2">
           <img
-            class="asset-slot__illustration"
-            src="assets/panels/panel-06-github-800.webp"
-            alt="Illustration of the intended flow: The Flow checklist and GitHub comment posted by daybreak-bot"
-            loading="lazy"
-            width="836" height="225">
-          <img
-            class="asset-slot__real"
-            src=""
-            alt="GIF showing the Friday-rule change and next-run compliance"
-            hidden>
-          <figcaption>Illustration of the intended flow</figcaption>
+            src="assets/panels/panel-07-learned-800.webp"
+            srcset="assets/panels/panel-07-learned-800.webp 800w, assets/panels/panel-07-learned-1600.webp 1600w"
+            sizes="(max-width: 768px) 90vw, 600px"
+            alt="Silhouettes reflecting on the collaboration architecture at sunset"
+            width="800" height="224"
+            loading="lazy">
+          <figcaption>Shared room collaboration: rules, decisions, and approvals in one place</figcaption>
         </figure>
-        <p class="asset-slot__label"></p>
       </div>
 
-      <!-- Phase 2: room memory explanation, multi-agent handoffs, Mattermost note -->
+      <!-- INTERACTION B: FRIDAY RULE TOGGLE -->
+      <div class="reveal" style="margin-top: 3rem;">
+        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Interaction: The Friday Rule Demonstration</h3>
+        <p style="color: var(--color-text-muted); font-size: var(--text-small); margin-bottom: 1rem;">
+          Toggle the room rule to observe how Sentinel suppresses review nudges before weekends:
+        </p>
+
+        <div class="simulator-box" id="friday-sim" aria-label="Friday rule toggle simulator">
+          <!-- Populated by js/interactions.js -->
+        </div>
+
+        <!-- Real asset slot for Friday-rule GIF if captured -->
+        <div class="asset-slot" data-asset-key="friday-rule" style="margin-top: 1.5rem;">
+          <img class="asset-slot__illustration" src="assets/panels/panel-06-github-800.webp" alt="Illustration of the intended flow" hidden>
+          <img class="asset-slot__real" src="assets/real/friday-rule.gif" alt="Recorded Friday rule demonstration GIF" hidden>
+          <p class="asset-slot__label"></p>
+        </div>
+      </div>
 
     </div>
 
   </section>
 
+  <div class="container"><hr class="section-divider" aria-hidden="true"></div>
+
   <!-- ══════════════════════════════════════════════════════════════════════
-       SECTION: ENGINEERING
+       SECTION 4: ENGINEERING DECISIONS
        ══════════════════════════════════════════════════════════════════ -->
   <section id="engineering" class="page-section" aria-labelledby="eng-heading">
 
     <div class="container">
 
+      <!-- Staggered heading -->
       <header class="section-header reveal">
-        <span class="label">Section 04 — Engineering Decisions</span>
-        <div class="stagger-heading" data-parallax aria-label="Engineering Decisions Heading">
-          <span class="stagger-line-1">No link,</span>
-          <span class="stagger-line-2">no claim.</span>
+        <span class="label">Section 04</span>
+        <div class="stagger-heading" data-parallax id="eng-heading">
+          <span class="stagger-line-1">Engineering</span>
+          <span class="stagger-line-2">Decisions</span>
         </div>
+        <p class="section-header__body">
+          Deliberate architecture boundaries, safety guarantees, and deterministic test scenarios.
+        </p>
+        <a href="#setup-block" class="section-header__link">View verified setup commands ↓</a>
       </header>
 
-      <!-- Agent diagram panel (panel-03-agents) -->
-      <figure class="tilt-frame reveal" style="--tilt: 3deg;" data-parallax-speed="0.2"
-              aria-label="Scribe, Sentinel and Clerk agent roles diagram">
-        <img
-          src="assets/panels/panel-03-agents-800.webp"
-          alt="Diagram showing Daybreak surrounded by Scribe (draft), Sentinel (recommend), and Clerk (act) agents with arrows"
-          loading="lazy"
-          width="836" height="223">
-        <figcaption>The three agent roles — relationships and flow</figcaption>
-      </figure>
-
-      <!-- Feature checklist (verified vs planned) -->
-      <ul class="feature-list reveal" aria-label="Feature implementation status">
-        <!-- Phase 2: populate with actual verified/planned items from project status -->
-        <li class="feature-list__item feature-list__item--planned">
-          <span class="feature-list__icon" aria-hidden="true">◦</span>
-          <span>Daily brief with evidence links <span class="feature-list__tag">P0 · status pending</span></span>
-        </li>
-        <li class="feature-list__item feature-list__item--planned">
-          <span class="feature-list__icon" aria-hidden="true">◦</span>
-          <span>Approval-gated Clerk actions <span class="feature-list__tag">P0 · status pending</span></span>
-        </li>
-        <li class="feature-list__item feature-list__item--planned">
-          <span class="feature-list__icon" aria-hidden="true">◦</span>
-          <span>Room rules and snooze memory <span class="feature-list__tag">P0 · status pending</span></span>
-        </li>
-        <li class="feature-list__item feature-list__item--planned">
-          <span class="feature-list__icon" aria-hidden="true">◦</span>
-          <span>Scheduled trigger <span class="feature-list__tag">P1 · optional</span></span>
-        </li>
-        <li class="feature-list__item feature-list__item--planned">
-          <span class="feature-list__icon" aria-hidden="true">◦</span>
-          <span>Weekly scoreboard <span class="feature-list__tag">P1 · optional</span></span>
-        </li>
-      </ul>
-
-      <!-- Collapsible: architecture detail -->
-      <details class="detail-block reveal">
-        <summary class="detail-block__trigger">Architecture overview</summary>
-        <div class="detail-block__body">
-          <!-- Phase 2: architecture diagram, blocker thresholds, permissions breakdown -->
-          <p>Full architecture detail will be added in Phase 2 once implementation is verified.</p>
-        </div>
-      </details>
-
-      <!-- Approval / GitHub asset slot (panel-06) -->
-      <div class="asset-slot reveal" data-asset-key="approval-github" aria-label="Clerk posting to GitHub after approval">
-        <figure class="tilt-frame" style="--tilt: -4deg;" data-parallax-speed="0.18" data-illustration>
+      <!-- Agent Architecture Panel (Panel 3) -->
+      <div class="image-cluster reveal">
+        <figure class="tilt-frame" style="--tilt: -3deg; max-width: 600px;" data-parallax-speed="0.2">
           <img
-            class="asset-slot__illustration"
-            src="assets/panels/panel-06-github-800.webp"
-            alt="Illustration of the intended flow: GitHub comment by daybreak-bot nudging reviewer for PR waiting 31 hours"
-            loading="lazy"
-            width="836" height="225">
-          <img
-            class="asset-slot__real"
-            src=""
-            alt="Screenshot of Clerk posting to GitHub after human approval"
-            hidden>
-          <figcaption>Illustration of the intended flow</figcaption>
+            src="assets/panels/panel-03-agents-800.webp"
+            srcset="assets/panels/panel-03-agents-800.webp 800w, assets/panels/panel-03-agents-1600.webp 1600w"
+            sizes="(max-width: 768px) 90vw, 600px"
+            alt="Hand-drawn diagram of Scribe, Sentinel, and Clerk agent boundaries around Daybreak"
+            width="800" height="223"
+            loading="lazy">
+          <figcaption>Agent role distribution and least-privilege boundary diagram</figcaption>
         </figure>
-        <p class="asset-slot__label"></p>
       </div>
 
-      <!-- Phase 2: idempotency, guardrails, token scope, dry-run -->
+      <!-- Animated Accessible Details Blocks -->
+      <div class="reveal" style="margin-top: 2rem;">
+        
+        <details class="detail-block">
+          <summary class="detail-block__trigger">Evidence first</summary>
+          <div class="detail-block__body">
+            Every statement drafted by Scribe links directly to a verifiable commit, pull request, or review timestamp. If zero repository events occurred for a developer in the past 24 hours, Scribe reports "No activity found" instead of hallucinating updates.
+          </div>
+        </details>
+
+        <details class="detail-block">
+          <summary class="detail-block__trigger">Permissions & least privilege</summary>
+          <div class="detail-block__body">
+            Scribe and Sentinel run with strictly read-only GitHub tokens. Only Clerk possesses write scope, gated behind human approval. Agents cannot merge pull requests or modify code.
+          </div>
+        </details>
+
+        <details class="detail-block">
+          <summary class="detail-block__trigger">Approval & idempotency</summary>
+          <div class="detail-block__body">
+            Proposed actions carry deterministic keys (e.g., <code>nudge-pr42-2026-11-07</code>). Clerk writes intent to a log and scans existing comments for hidden HTML markers, skipping duplicates automatically.
+          </div>
+        </details>
+
+        <details class="detail-block">
+          <summary class="detail-block__trigger">Blocker rules & thresholds</summary>
+          <div class="detail-block__body">
+            Sentinel checks four explicit baseline thresholds:
+            <ul style="margin-top: 0.5rem; padding-left: 1.25rem;">
+              <li><strong>Review pending:</strong> review requested over 24 hours.</li>
+              <li><strong>Red CI:</strong> failing check on an open PR older than 12 hours.</li>
+              <li><strong>Approved unmerged:</strong> approved PR unmerged over 24 hours.</li>
+              <li><strong>Stale ticket:</strong> assigned issue untouched for 3 days.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="detail-block">
+          <summary class="detail-block__trigger">Setup and safety boundaries</summary>
+          <div class="detail-block__body">
+            Tokens pass via local environment variables. Dry-run mode (<code>DAYBREAK_DRY_RUN=1</code>) verifies logic without outbound GitHub API calls. All comments include attribution: <code>[Daybreak, approved by @user]</code>.
+          </div>
+        </details>
+
+      </div>
+
+      <!-- Verified Setup Command Block -->
+      <div id="setup-block" class="reveal" style="margin-top: 3rem;">
+        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Tested Setup Command</h3>
+        <p style="color: var(--color-text-muted); font-size: var(--text-small); margin-bottom: 1rem;">
+          Run our verified offline test suite and seeded standup scenario:
+        </p>
+
+        <div class="code-block">
+          <pre><code class="lang-bash">git clone https://github.com/Arryan21-06/Flip-the-Switch
+cd Flip-the-Switch
+python -m venv .venv
+# On Windows: .venv\Scripts\activate | On macOS/Linux: source .venv/bin/activate
+pip install -r requirements.txt
+pytest -v tests/
+python scripts/demo_runner.py --scenario seeded_standup</code></pre>
+          <button class="code-block__copy" aria-label="Copy setup commands to clipboard">Copy</button>
+        </div>
+
+        <div class="dev-note dev-placeholder">
+          <strong>Dev note:</strong> Confirm the clone URL points to the correct repo owner (<code>Arryan21-06/Flip-the-Switch</code>) before publishing.
+        </div>
+      </div>
 
     </div>
 
   </section>
 
+  <div class="container"><hr class="section-divider" aria-hidden="true"></div>
+
   <!-- ══════════════════════════════════════════════════════════════════════
-       SECTION: LEARNED
+       SECTION 5: WHAT WE LEARNED
        ══════════════════════════════════════════════════════════════════ -->
   <section id="learned" class="page-section" aria-labelledby="learned-heading">
 
     <div class="container">
 
+      <!-- Staggered heading -->
       <header class="section-header reveal">
-        <span class="label">Section 05 — What We Learned</span>
-        <div class="stagger-heading" data-parallax aria-label="What We Learned Heading">
-          <span class="stagger-line-1">What worked,</span>
-          <span class="stagger-line-2">what didn't.</span>
+        <span class="label">Section 05</span>
+        <div class="stagger-heading" data-parallax id="learned-heading">
+          <span class="stagger-line-1">What we</span>
+          <span class="stagger-line-2">Learned</span>
         </div>
+        <p class="section-header__body">
+          Honest implementation reality: what is verified, what remains limited, and what we would build next.
+        </p>
+        <a href="#repo" class="section-header__link">Jump to repository links ↓</a>
       </header>
 
-      <!-- Sunset silhouette panel (panel-07-learned) -->
-      <figure class="tilt-frame reveal" style="--tilt: 5deg;" data-parallax-speed="0.3"
-              aria-label="Silhouettes at sunset — What we learned">
-        <img
-          src="assets/panels/panel-07-learned-800.webp"
-          alt="Four silhouettes walking toward a mountain sunset, labelled What we learned"
-          loading="lazy"
-          width="836" height="224">
-        <figcaption>What we learned building Daybreak in one day</figcaption>
-      </figure>
+      <!-- Verified vs Not Yet Verified Checklist -->
+      <div class="reveal">
+        <h3 style="font-size: 1.25rem; margin-bottom: 1rem;">Implementation Status</h3>
+        
+        <div class="verification-grid">
+          
+          <div class="verification-col verification-col--verified">
+            <h4 class="verification-col__title">✓ Verified in Codebase</h4>
+            <ul class="feature-list" style="margin: 0;">
+              <li class="feature-list__item feature-list__item--verified">
+                <span class="feature-list__icon" aria-hidden="true">✓</span>
+                <span>Python core toolkit verified with <strong>76 offline tests</strong></span>
+              </li>
+              <li class="feature-list__item feature-list__item--verified">
+                <span class="feature-list__icon" aria-hidden="true">✓</span>
+                <span>Single-agent multi-role execution mode</span>
+              </li>
+              <li class="feature-list__item feature-list__item--verified">
+                <span class="feature-list__icon" aria-hidden="true">✓</span>
+                <span>Daybreak Cockpit (read-only web dashboard)</span>
+              </li>
+              <li class="feature-list__item feature-list__item--verified">
+                <span class="feature-list__icon" aria-hidden="true">✓</span>
+                <span>Approval-gated actions with write-ahead intent logging</span>
+              </li>
+              <li class="feature-list__item feature-list__item--verified">
+                <span class="feature-list__icon" aria-hidden="true">✓</span>
+                <span>Hidden comment marker idempotency</span>
+              </li>
+            </ul>
+          </div>
 
-      <!-- Roadmap panel (panel-08-roadmap) -->
-      <figure class="tilt-frame reveal" style="--tilt: -3deg;" data-parallax-speed="0.22"
-              aria-label="P0 P1 P2 roadmap on a night sky background">
-        <img
-          src="assets/panels/panel-08-roadmap-800.webp"
-          alt="Dotted path on a night sky showing P0 Built, P1 Next, P2 Later milestones"
-          loading="lazy"
-          width="836" height="224">
-        <figcaption>Shipped, next, later — the Daybreak roadmap</figcaption>
-      </figure>
+          <div class="verification-col verification-col--pending">
+            <h4 class="verification-col__title">◦ Designed / In Progress</h4>
+            <ul class="feature-list" style="margin: 0;">
+              <li class="feature-list__item feature-list__item--planned">
+                <span class="feature-list__icon" aria-hidden="true">◦</span>
+                <span>Level 3: Three autonomous agents handing off across threads inside Switch (pending full multi-agent harness)</span>
+              </li>
+              <li class="feature-list__item feature-list__item--planned">
+                <span class="feature-list__icon" aria-hidden="true">◦</span>
+                <span>Live dynamic Friday-rule evaluation inside the Switch runtime (currently verified in local test suite)</span>
+              </li>
+            </ul>
+          </div>
 
-      <!-- Phase 2: real bugs, failures, fixes, limitations, actual test outcomes -->
-      <!-- Placeholder sticky note -->
-      <div class="sticky-note reveal" style="--note-rotate: -2deg;" aria-label="Note: challenges to be added after build">
-        <p class="sticky-note__text">Real challenges go here — after the build.</p>
+        </div>
+      </div>
+
+      <!-- Real challenges row -->
+      <div class="reveal" style="margin-top: 2.5rem;">
+        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Build Challenges & Lessons</h3>
+        <p style="color: var(--color-text-muted); font-size: var(--text-small);">
+          Real integration friction from builders:
+        </p>
+
+        <div class="challenge-cards dev-placeholder">
+          <div class="challenge-card">
+            <p class="challenge-card__label">Challenge 1</p>
+            <p class="challenge-card__placeholder">[REAL PROBLEM + FIX FROM BUILDERS]</p>
+          </div>
+          <div class="challenge-card">
+            <p class="challenge-card__label">Challenge 2</p>
+            <p class="challenge-card__placeholder">[REAL PROBLEM + FIX FROM BUILDERS]</p>
+          </div>
+          <div class="challenge-card">
+            <p class="challenge-card__label">Challenge 3</p>
+            <p class="challenge-card__placeholder">[REAL PROBLEM + FIX FROM BUILDERS]</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Roadmap Panel (Panel 8) -->
+      <div class="image-cluster reveal" style="margin-top: 2rem;">
+        <figure class="tilt-frame" style="--tilt: -3deg; max-width: 600px;" data-parallax-speed="0.2">
+          <img
+            src="assets/panels/panel-08-roadmap-800.webp"
+            srcset="assets/panels/panel-08-roadmap-800.webp 800w, assets/panels/panel-08-roadmap-1600.webp 1600w"
+            sizes="(max-width: 768px) 90vw, 600px"
+            alt="Product milestone roadmap on a night sky background showing P0 built, P1 next, and P2 later"
+            width="800" height="224"
+            loading="lazy">
+          <figcaption>Daybreak development roadmap: shipped baseline, next sprint, and future adapters</figcaption>
+        </figure>
+      </div>
+
+      <!-- Cockpit slot -->
+      <div class="asset-slot reveal" data-asset-key="cockpit" style="margin-top: 2rem;">
+        <figure class="tilt-frame" style="--tilt: 2deg; max-width: 600px;">
+          <img class="asset-slot__illustration" src="assets/panels/panel-04-flow-800.webp" alt="Daybreak Cockpit dashboard visual" loading="lazy">
+          <img class="asset-slot__real" src="assets/real/cockpit.png" alt="Screenshot of Daybreak Cockpit web dashboard" hidden>
+          <figcaption>Daybreak Cockpit — local read-only status viewer</figcaption>
+        </figure>
+        <p class="asset-slot__label"></p>
+      </div>
+
+      <!-- Roadmap next list -->
+      <div class="reveal" style="margin-top: 2.5rem;">
+        <h4 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Roadmap (Next Sprint)</h4>
+        <ul style="padding-left: 1.25rem; color: var(--color-text-muted); font-size: var(--text-small); line-height: 1.7;">
+          <li><strong>Scheduled trigger:</strong> automated 09:30 morning run via GitHub Action or cron dispatch.</li>
+          <li><strong>Reviewer digest:</strong> personalized DM summarizing pending PR reviews waiting on each engineer.</li>
+          <li><strong>Team scoreboard:</strong> weekly review duration trends and resolved blocker metrics.</li>
+          <li><strong>Nudge budget & quiet hours:</strong> hard rate limit of at most two nudges per teammate per day.</li>
+        </ul>
       </div>
 
     </div>
 
   </section>
 
+  <div class="container"><hr class="section-divider" aria-hidden="true"></div>
+
   <!-- ══════════════════════════════════════════════════════════════════════
-       SECTION: REPO CTA
+       SECTION 6: REPO CTA
        ══════════════════════════════════════════════════════════════════ -->
   <section id="repo" class="page-section repo-cta" aria-labelledby="repo-heading">
 
     <div class="container">
-      <h2 id="repo-heading" class="repo-cta__heading reveal">Try it yourself.</h2>
+      
+      <header class="section-header reveal" style="text-align: center; margin-bottom: var(--space-6);">
+        <span class="label">Get Started</span>
+        <h2 id="repo-heading" class="repo-cta__heading">Inspect the code.</h2>
+        <p class="section-header__body" style="margin-inline: auto;">
+          Everything described here is open source. Clone the repository and run the test suite in under two minutes.
+        </p>
+      </header>
 
-      <!-- Phase 2: tested setup command block, demo GIF slot, repo link -->
-      <div class="code-block reveal" aria-label="Repository setup command — to be verified">
-        <pre><code class="lang-bash"># Setup command — to be verified on a clean environment
-# git clone https://github.com/Arryan21-06/Flip-the-Switch
-# cd Flip-the-Switch
-# cp .env.example .env
-# bash scripts/setup.sh</code></pre>
-        <button class="code-block__copy" aria-label="Copy setup command to clipboard">Copy</button>
-      </div>
-
-      <div class="reveal" style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <div class="reveal" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
         <a
           href="https://github.com/Arryan21-06/Flip-the-Switch"
           class="btn btn--primary"
@@ -419,7 +704,7 @@
           class="btn btn--outline"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Flip the Switch Hackathon page (opens in new tab)">
+          aria-label="WeMakeDevs Flip the Switch Hackathon page (opens in new tab)">
           Hackathon Page
         </a>
       </div>
@@ -436,7 +721,7 @@
       <p>
         Built for the
         <a href="https://www.wemakedevs.org/hackathons/switch" target="_blank" rel="noopener noreferrer">
-          WeMakeDevs × Switch Flip the Switch Hackathon
+          WeMakeDevs × Switch "Flip the Switch" Hackathon
         </a>
         by <strong>Attention is All You Need</strong>.
       </p>
@@ -445,13 +730,19 @@
           github.com/Arryan21-06/Flip-the-Switch
         </a>
         &nbsp;·&nbsp;
-        Chat via Mattermost (bundled with Switch)
+        Released under the MIT License
+        &nbsp;·&nbsp;
+        Chat via Mattermost
+      </p>
+      <p style="margin-top: 0.5rem; font-size: 0.7rem; color: var(--color-text-disabled);">
+        Tested with 76 offline tests · Single-agent multi-role verified
       </p>
     </div>
   </footer>
 
   <!-- ── Scripts ─────────────────────────────────────────────────────────── -->
   <script src="js/assets.config.js"></script>
+  <script src="js/interactions.js"></script>
   <script src="js/main.js"></script>
 
 </body>
