@@ -1,0 +1,111 @@
+/* ==========================================================================
+   TOKENS.CSS — Design tokens for Daybreak: Standup Zero for Switch
+   Team: Attention is All You Need
+   ========================================================================== */
+
+:root {
+  /* ── Colour ─────────────────────────────────────────────────────────────── */
+  --color-base:          #0e0e0e;   /* near-black page background              */
+  --color-surface:       #161616;   /* slightly lifted surface (cards, panels)  */
+  --color-surface-hover: #1e1e1e;   /* hover state surface                      */
+  --color-text:          #f4f1ea;   /* off-white body text — WCAG ≈17.6:1       */
+  --color-text-muted:    #9e9b93;   /* timestamps, secondary labels             */
+  --color-text-disabled: #5a5753;   /* inactive / unverified                    */
+  --color-accent:        #f2a65a;   /* warm sunrise amber — links, active nav   */
+  --color-accent-dim:    #c47a30;   /* dimmed amber for hover states            */
+  --color-label:         #8b7fc7;   /* muted dusk purple — small labels         */
+  --color-code-bg:       #1a1a1a;   /* code block background                    */
+  --color-border:        #2a2a2a;   /* subtle borders                           */
+  --color-border-accent: #3a3028;   /* warm-tinted border near accent areas     */
+  --color-sticky-bg:     #f5e6a3;   /* sticky-note yellow background            */
+  --color-sticky-text:   #1a1507;   /* sticky-note dark text                    */
+
+  /* ── Typography: families ───────────────────────────────────────────────── */
+  --font-heading:     'Montserrat', 'Arial Black', 'Helvetica Neue', sans-serif;
+  --font-body:        'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  --font-code:        'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  --font-handwritten: 'Caveat', cursive;  /* sticky notes ONLY */
+
+  /* ── Typography: weights ────────────────────────────────────────────────── */
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+  --fw-extrabold:800;
+
+  /* ── Typography: sizes (fluid) ──────────────────────────────────────────── */
+  --text-hero:    clamp(4rem,   12vw, 10rem);  /* staggered section headings   */
+  --text-h2:      clamp(2rem,   5vw,  3.5rem); /* sub-headings                 */
+  --text-h3:      clamp(1.25rem,3vw,  1.75rem);
+  --text-body:    1.125rem;                     /* 18px equivalent              */
+  --text-small:   0.875rem;
+  --text-xs:      0.75rem;
+  --text-label:   0.6875rem;                    /* uppercase tracking labels    */
+  --text-code:    0.9375rem;
+
+  /* ── Typography: metrics ────────────────────────────────────────────────── */
+  --lh-heading:  1.05;
+  --lh-body:     1.7;
+  --lh-code:     1.6;
+  --ls-label:    0.12em;
+  --ls-nav:      0.08em;
+
+  /* ── Spacing ────────────────────────────────────────────────────────────── */
+  --space-1:  0.25rem;   /*  4px */
+  --space-2:  0.5rem;    /*  8px */
+  --space-3:  0.75rem;   /* 12px */
+  --space-4:  1rem;      /* 16px */
+  --space-5:  1.5rem;    /* 24px */
+  --space-6:  2rem;      /* 32px */
+  --space-7:  3rem;      /* 48px */
+  --space-8:  4rem;      /* 64px */
+  --space-9:  6rem;      /* 96px */
+  --space-10: 8rem;      /* 128px */
+
+  /* ── Layout ─────────────────────────────────────────────────────────────── */
+  --col-width:        680px;   /* narrow reading column                        */
+  --col-padding:      1.5rem;  /* side padding for column                      */
+  --nav-height:       56px;
+  --section-pt:       clamp(5rem, 10vw, 7.5rem);  /* section padding-top      */
+  --section-pb:       clamp(3rem, 6vw,  5rem);    /* section padding-bottom   */
+
+  /* ── Radius ─────────────────────────────────────────────────────────────── */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-pill: 999px;
+
+  /* ── Shadows ────────────────────────────────────────────────────────────── */
+  --shadow-sm:  0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md:  0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-lg:  0 8px 40px rgba(0, 0, 0, 0.6);
+  --shadow-tilt:4px 8px 32px rgba(0, 0, 0, 0.55);  /* for tilted image frames */
+  --shadow-note:4px 4px 12px rgba(0, 0, 0, 0.4);   /* sticky notes            */
+
+  /* ── Motion ─────────────────────────────────────────────────────────────── */
+  --transition-fast:   150ms ease-out;
+  --transition-base:   220ms ease-out;
+  --transition-reveal: 350ms cubic-bezier(0.16, 1, 0.3, 1);  /* scroll reveals */
+  --parallax-line1:    0.08;   /* parallax speed for heading line 1            */
+  --parallax-line2:    0.14;   /* parallax speed for heading line 2            */
+  --parallax-img-slow: 0.15;   /* slow parallax for far-plane images           */
+  --parallax-img-fast: 0.30;   /* faster parallax for foreground images        */
+
+  /* ── Tilt angles (alternating per panel) ───────────────────────────────── */
+  --tilt-a:  3deg;
+  --tilt-b: -4deg;
+  --tilt-c:  5deg;
+  --tilt-d: -3deg;
+  --tilt-e:  7deg;
+  --tilt-f: -6deg;
+  --tilt-g:  4deg;
+  --tilt-h: -8deg;
+
+  /* ── Z-index scale ──────────────────────────────────────────────────────── */
+  --z-below:   -1;
+  --z-base:     0;
+  --z-raised:   1;
+  --z-overlay: 10;
+  --z-nav:     100;
+  --z-modal:   200;
+}
